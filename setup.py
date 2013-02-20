@@ -46,6 +46,7 @@ class sdist_hg(sdist):
         tip = repo.changelog.tip()
         return repo.changelog.rev(tip)
 
+from gsw.version import version
 classifiers = """\
 Development Status :: 5 - Production/Stable
 Environment :: Console
@@ -62,7 +63,7 @@ Topic :: Software Development :: Libraries :: Python Modules
 
 readme = codecs.open('README.rst', encoding='utf-8')
 config = dict(name='gsw',
-              version='3.0.1',
+              version=version,
               packages=packages,
               package_data={'gsw.utilities': ['data/*.npz']},
               license=open('LICENSE.txt').read(),
