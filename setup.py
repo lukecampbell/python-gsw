@@ -5,11 +5,16 @@ import os
 import codecs
 
 try:
-    from setuptools import setup
+    from setuptools import setup, find_packages
     from setuptools.command.sdist import sdist
+    packages = find_packages()
+
 except ImportError:
     from distutils.core import setup
     from distutils.command.sdist import sdist
+    packages=['gsw',
+              'gsw/gibbs',
+              'gsw/utilities'],
 
 # TODO: find setuptools equivalent.
 try:  # Python 3
@@ -58,10 +63,8 @@ Topic :: Software Development :: Libraries :: Python Modules
 readme = codecs.open('README.rst', encoding='utf-8')
 config = dict(name='gsw',
               version='3.0.1',
-              packages=['gsw',
-                        'gsw/gibbs',
-                        'gsw/utilities'],
-              package_data={'': ['gsw/utilities/data/*.npz']},
+              packages=packages,
+              package_data={'gsw.utilities': ['data/*.npz']},
               license=open('LICENSE.txt').read(),
               description='Gibbs SeaWater Oceanographic Package of TEOS-10',
               long_description=readme.read(),
